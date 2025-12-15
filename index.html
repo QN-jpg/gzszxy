@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿色系个人博客</title>
+   <link rel="stylesheet" type="text/css" href="1.css">
+</head>
+<body>
+    <div class="petal" id="petal"></div>
+    <nav>
+        <div class="a">
+            <a href=" " class="logo">个人博客</a >
+            <div class="b">
+                <a href="#home">首页</a >
+                <a href="#about">详情信息</a >
+                <a href="#message">留言板</a >
+            </div>
+        </div>
+    </nav>
+    <div class="c">
+        <div class="d">
+            <section id="home" class="e">
+                <h2>首页</h2>
+                <div class="f">
+                    <p><strong>欢迎来到我的个人博客</strong> 
+                    <p><strong>个人简介：</strong> <hr>
+ 大家好！我是一名学生，在学习web前端期间，我始终保持积极进取的学习态度，我性格开 朗外向，善于倾听与协作，对待任务认真负责、注重细节。
+  </p >
+                </div>
+                <div class="f">
+                    <p><strong>近期推荐：</strong></p >
+                    <img src="1.jpg" height="200" width="200">
+                    <img src="2.jpg" height="200" width="200">
+                    <img src="3.jpg" height="200" width="200">
+                    <img src="4.jpg" height="200" width="200">
+                    <img src="5.jpg" height="200" width="200">
+                    <img src="6.jpg" height="200" width="200">
+                </div>
+
+            </section>
+
+            <section id="about" class="e">
+                <h2>详情信息</h2>
+                <div class="f">
+                    <p><strong>基本信息：</strong></p >
+                    <p>姓名：全娜</p >
+                    <p>性别：女</p >
+                    <p>年龄：19</p >
+                    <p>学校：贵州中医药大学时珍学院</p >
+                    <p>专业：数据科学与大数据技术</p >
+                    <p>兴趣爱好：
+                            <li>打羽毛球</li>
+                            <li>打游戏</li>
+                            <li>看电影</li>
+                            <li>听音乐</li>
+                            <li>......</li>
+                    </p >
+                </div>
+            </section>
+
+            <section id="message" class="e">
+                <h2>留言板</h2>
+                <p>欢迎大家留言交流～</p >
+                <form class="message-form">
+                    <textarea placeholder="请输入你的留言..."></textarea>
+                    <button type="button">提交留言</button>
+                </form>
+                <form>
+                    <hr>
+                    留言发布时间：
+                    <select>
+                        <option value="1">1分钟后</option>
+                        <option value="2">5分钟后</option>
+                        <option value="3">10分钟后</option>
+
+                        
+                    </select>
+                </form>
+            </section>
+        </div>
+        <div class="sidebar">
+            <h3>侧边信息</h3>
+            <div class="info-box">
+                <p><strong>关注我</strong></p >
+                <p>微信：123456</p >
+                <p>QQ：123456</p >
+                <p>邮箱：123456@qq.com</p >
+                
+          
+            </div>
+            
+
+    <script>
+        function createPetals() {
+            const petalContainer = document.getElementById('petal');
+            const petalCount = 16;
+            const petalChars = ['🌸', '💮'];
+            const fallDuration = 5;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.style.position = 'absolute';
+                petal.style.color = '#ffc0cb';
+                petal.style.fontSize = `${Math.random() * 4 + 4}px`;
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.top = `${Math.random() * -30}px`;
+                petal.style.opacity = Math.random() * 0.4 + 0.5;
+                petal.style.animation = `fall ${fallDuration}s linear forwards`;
+                petal.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
+
+                const keyframes = `
+                    @keyframes fall {
+                        0% { transform: translateY(0) rotate(0deg); }
+                        100% { transform: translateY(${window.innerHeight + 20}px) rotate(15deg); }
+                    }
+                `;
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+
+                petalContainer.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, fallDuration * 1000);
+            }
+        }
+
+        window.addEventListener('load', createPetals);
+        const submitBtn = document.querySelector('.message-form button');
+        const textarea = document.querySelector('.message-form textarea');
+
+        submitBtn.addEventListener('click', () => {
+            const message = textarea.value.trim();
+            if (message) {
+                textarea.value = '';
+                alert('留言提交成功！');
+            } else {
+                alert('请输入有效留言～');
+            }
+        });
+    </script>
+</body>
+</html>
